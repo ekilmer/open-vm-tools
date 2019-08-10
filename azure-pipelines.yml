@@ -1,12 +1,34 @@
 pool:
   vmImage: 'ubuntu-latest'
 
+strategy:
+  matrix:
+    ubuntu14:
+      containerImage: ubuntu:14.04
+    ubuntu16:
+      containerImage: ubuntu:16.04
+    ubuntu18:
+      containerImage: ubuntu:18.04
+    ubuntu-latest:
+      containerImage: ubuntu:latest
+    fedora-latest:
+      containerImage: fedora:latest
+
+container: $[ variables['containerImage'] ]
+
 steps:
 - script: |
     sudo sed -Ei 's/^# deb-src /deb-src /' /etc/apt/sources.list
     sudo apt-get update
     sudo apt-get build-dep -y open-vm-tools
-  displayName: 'Install build dependencies'
+  displayName: 'Install build dependencies Ubuntu'
+  condition: startsWith( variables['containerImage'], 'ubuntu:' )
+
+- script: |
+    sudo dnf install -y dnf-plugins-core
+    sudo dnf builddep -y open-vm-tools
+  displayName: 'Install build dependencies Fedora'
+  condition: startsWith( variables['containerImage'], 'fedora:' )
 
 - script: |
     cd open-vm-tools
