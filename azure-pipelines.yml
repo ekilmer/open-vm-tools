@@ -5,34 +5,23 @@ strategy:
   matrix:
     ubuntu14:
       containerImage: ubuntu:14.04
+      dockerfile: Dockerfile.ubuntu
     ubuntu16:
       containerImage: ubuntu:16.04
+      dockerfile: Dockerfile.ubuntu
     ubuntu18:
       containerImage: ubuntu:18.04
+      dockerfile: Dockerfile.ubuntu
     ubuntu-latest:
       containerImage: ubuntu:latest
+      dockerfile: Dockerfile.ubuntu
     fedora-latest:
       containerImage: fedora:latest
-
-container: $[ variables['containerImage'] ]
+      dockerfile: Dockerfile.fedora
 
 steps:
-- script: |
-    sudo sed -Ei 's/^# deb-src /deb-src /' /etc/apt/sources.list
-    sudo apt-get update
-    sudo apt-get build-dep -y open-vm-tools
-  displayName: 'Install build dependencies Ubuntu'
-  condition: startsWith( variables['containerImage'], 'ubuntu:' )
+- script: docker build -f $(dockerfile) --build-arg IMAGE=$(containerImage) -t base .
+  displayName: 'Install build dependencies'
 
-- script: |
-    sudo dnf install -y dnf-plugins-core
-    sudo dnf builddep -y open-vm-tools
-  displayName: 'Install build dependencies Fedora'
-  condition: startsWith( variables['containerImage'], 'fedora:' )
-
-- script: |
-    cd open-vm-tools
-    autoreconf -i
-    ./configure --without-kernel-modules
-    make -j$(nproc)
+- script: docker run -v $(pwd):/open-vm-tools -w /open-vm-tools base ./build.sh
   displayName: 'Build'

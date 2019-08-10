@@ -1,0 +1,6 @@
+ARG IMAGE=ubuntu:18.04
+FROM $IMAGE as dep-base
+RUN sed -Ei 's/^# deb-src /deb-src /' /etc/apt/sources.list && \
+    apt-get update && \
+    apt-get install -y sudo && \
+    apt-get build-dep -y open-vm-tools
