@@ -15,6 +15,9 @@ strategy:
     ubuntu-rolling:
       containerImage: ubuntu:rolling
       dockerfile: Dockerfile.ubuntu
+    ubuntu-devel:
+      containerImage: ubuntu:devel
+      dockerfile: Dockerfile.ubuntu
     fedora-latest:
       containerImage: fedora:latest
       dockerfile: Dockerfile.fedora
