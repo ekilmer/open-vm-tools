@@ -12,8 +12,8 @@ strategy:
     ubuntu18:
       containerImage: ubuntu:18.04
       dockerfile: Dockerfile.ubuntu
-    ubuntu-latest:
-      containerImage: ubuntu:latest
+    ubuntu-rolling:
+      containerImage: ubuntu:rolling
       dockerfile: Dockerfile.ubuntu
     fedora-latest:
       containerImage: fedora:latest
