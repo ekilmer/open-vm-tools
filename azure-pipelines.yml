@@ -1,0 +1,16 @@
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- script: |
+    sed -Ei 's/^# deb-src /deb-src /' /etc/apt/sources.list
+    apt-get update
+    apt-get build-dep -y open-vm-tools
+  displayName: 'Install build dependencies'
+
+- script: |
+    cd open-vm-tools
+    autoreconf -i
+    ./configure --without-kernel-modules
+    make -j$(nproc)
+  displayName: 'Build'
