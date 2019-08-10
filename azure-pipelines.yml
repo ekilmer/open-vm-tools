@@ -3,9 +3,9 @@ pool:
 
 steps:
 - script: |
-    sed -Ei 's/^# deb-src /deb-src /' /etc/apt/sources.list
-    apt-get update
-    apt-get build-dep -y open-vm-tools
+    sudo sed -Ei 's/^# deb-src /deb-src /' /etc/apt/sources.list
+    sudo apt-get update
+    sudo apt-get build-dep -y open-vm-tools
   displayName: 'Install build dependencies'
 
 - script: |
