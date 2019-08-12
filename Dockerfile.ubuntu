@@ -1,0 +1,7 @@
+ARG IMAGE=ubuntu:18.04
+FROM $IMAGE as dep-base
+RUN sed -Ei 's/^# deb-src /deb-src /' /etc/apt/sources.list && \
+    apt-get update && \
+    apt-get install -y sudo && \
+    apt-get build-dep -y open-vm-tools && \
+    apt-get install -y libmspack-dev libssl-dev libxml2-dev libxmlsec1-dev libgtk-3-dev libgtkmm-3.0-dev
