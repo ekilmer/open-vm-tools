@@ -1,30 +1,49 @@
-pool:
-  vmImage: 'ubuntu-latest'
+jobs:
 
-strategy:
-  matrix:
-    ubuntu14:
-      containerImage: ubuntu:14.04
-      dockerfile: Dockerfile.ubuntu
-    ubuntu16:
-      containerImage: ubuntu:16.04
-      dockerfile: Dockerfile.ubuntu
-    ubuntu18:
-      containerImage: ubuntu:18.04
-      dockerfile: Dockerfile.ubuntu
-    ubuntu-rolling:
-      containerImage: ubuntu:rolling
-      dockerfile: Dockerfile.ubuntu
-    ubuntu-devel:
-      containerImage: ubuntu:devel
-      dockerfile: Dockerfile.ubuntu
-    fedora-latest:
-      containerImage: fedora:latest
-      dockerfile: Dockerfile.fedora
+- job: "LinuxDistro"
+  displayName: "Linux Distro Build"
+  pool:
+    vmImage: 'ubuntu-latest'
 
-steps:
-- script: docker build -f $(dockerfile) --build-arg IMAGE=$(containerImage) -t base .
-  displayName: 'Install build dependencies'
+  strategy:
+    matrix:
+      ubuntu14:
+        containerImage: ubuntu:14.04
+        dockerfile: Dockerfile.ubuntu
+      ubuntu16:
+        containerImage: ubuntu:16.04
+        dockerfile: Dockerfile.ubuntu
+      ubuntu18:
+        containerImage: ubuntu:18.04
+        dockerfile: Dockerfile.ubuntu
+      ubuntu-rolling:
+        containerImage: ubuntu:rolling
+        dockerfile: Dockerfile.ubuntu
+      ubuntu-devel:
+        containerImage: ubuntu:devel
+        dockerfile: Dockerfile.ubuntu
+      fedora-latest:
+        containerImage: fedora:latest
+        dockerfile: Dockerfile.fedora
 
-- script: docker run -v $(pwd):/open-vm-tools -w /open-vm-tools base ./build.sh
-  displayName: 'Build'
+  steps:
+  - script: docker build -f $(dockerfile) --build-arg IMAGE=$(containerImage) -t base .
+    displayName: 'Install build dependencies'
+
+  - script: docker run -v $(pwd):/open-vm-tools -w /open-vm-tools base ./build.sh
+    displayName: 'Build'
+
+- job: "GUIX"
+  displayName: "GUIX Build"
+  pool:
+    vmImage: "ubuntu-latest"
+
+  steps:
+  - script: docker build -f Dockerfile.guix -t alpine-guix .
+    displayName: 'GUIX Install'
+
+  - script: |
+      docker run -d -v $(pwd):/open-vm-tools --privileged --name alpine-guix alpine-guix
+      docker exec -w /open-vm-tools --privileged alpine-guix guix environment --pure --container --manifest=open-vm-tools-manifest.scm -- ./build.sh
+      docker stop alpine-guix
+    displayName: 'Build'
