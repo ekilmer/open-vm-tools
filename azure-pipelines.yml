@@ -45,5 +45,7 @@ jobs:
   - script: |
       docker run -d -v $(pwd):/open-vm-tools --privileged --name alpine-guix alpine-guix
       docker exec -w /open-vm-tools --privileged alpine-guix guix environment --pure --container --manifest=open-vm-tools-manifest.scm -- ./build.sh
+      RET=$?
       docker stop alpine-guix
+      exit $RET
     displayName: 'Build'
