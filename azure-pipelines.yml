@@ -49,3 +49,19 @@ jobs:
       docker stop alpine-guix
       exit $RET
     displayName: 'Build'
+
+- job: "GUIXNative"
+  displayName: "GUIX Native Build"
+  pool:
+    vmImage: "ubuntu-latest"
+
+  steps:
+  - script: |
+      sudo apt-get remove --purge unscd
+      wget https://git.savannah.gnu.org/cgit/guix.git/plain/etc/guix-install.sh
+      gpg --keyserver pool.sks-keyservers.net --recv-keys 3CE464558A84FDC69DB40CFB090B11993D9AEBB5
+      echo "\n" | sudo bash ./guix-install.sh
+    displayName: 'GUIX Native Install'
+
+  - script: guix environment --pure --container --manifest=open-vm-tools-manifest.scm -- ./build.sh
+    displayName: 'Build'
