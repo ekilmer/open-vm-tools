@@ -58,9 +58,11 @@ jobs:
   steps:
   - script: |
       sudo apt-get remove --purge unscd
+      sudo apt-get install -y expect
       wget https://git.savannah.gnu.org/cgit/guix.git/plain/etc/guix-install.sh
-      gpg --keyserver pool.sks-keyservers.net --recv-keys 3CE464558A84FDC69DB40CFB090B11993D9AEBB5
-      echo "\n" | sudo bash ./guix-install.sh
+      chmod +x ./guix-install.sh
+      wget https://sv.gnu.org/people/viewgpg.php?user_id=15145 -qO - | gpg --import -
+      sudo ./install-guix.sh
     displayName: 'GUIX Native Install'
 
   - script: guix environment --pure --container --manifest=open-vm-tools-manifest.scm -- ./build.sh
