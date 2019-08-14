@@ -34,6 +34,9 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
+#ifdef HAVE_SYS_PARAM_H
+#include <sys/param.h>
+#endif
 #include <glib.h>
 
 #include "vm_assert.h"

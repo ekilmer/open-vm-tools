@@ -29,13 +29,13 @@
  * @{
  */
 
-#include <glib.h>
 #if defined(G_PLATFORM_WIN32)
 #  include <windows.h>
 #  include <objbase.h>
 #endif
 #include "vmware/guestrpc/capabilities.h"
 #include "vmware/tools/guestrpc.h"
+#include <glib.h>
 #include "vmware/tools/utils.h"
 
 /**

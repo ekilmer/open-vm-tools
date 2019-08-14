@@ -73,6 +73,7 @@
 #define INCLUDE_ALLOW_DISTRIBUTE
 #define INCLUDE_ALLOW_VMCORE
 #include "includeCheck.h"
+#include <sys/param.h>
 #include "vm_basic_types.h" // For INLINE.
 
 /* Checks for FreeBSD, filtering out VMKERNEL. */

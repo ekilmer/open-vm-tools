@@ -26,7 +26,6 @@
 #include <string.h>
 #include <stdio.h>
 #include <locale.h>
-#include <glib/gstdio.h>
 
 #include "toolboxCmdInt.h"
 #include "toolboxcmd_version.h"
@@ -46,6 +45,8 @@
 
 #include "vm_version.h"
 #include "embed_version.h"
+
+#include <glib/gstdio.h>
 VM_EMBED_VERSION(TOOLBOXCMD_VERSION_STRING);
 
 

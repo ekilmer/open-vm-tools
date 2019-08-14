@@ -57,6 +57,7 @@
 #   include <str.h>
 #else
 #   define _GNU_SOURCE
+#   include <sys/param.h>
 #   include <string.h>
 #   include <stdlib.h>
 #   include <errno.h>

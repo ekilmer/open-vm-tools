@@ -24,11 +24,11 @@
 #ifndef __DNDPLUGIN_INTX11_H__
 #define __DNDPLUGIN_INTX11_H__
 
+#include "vm_basic_types.h"
 #include <X11/Xlib.h>
 #include <gtk/gtk.h>
 #include <gdk/gdkx.h>
 #undef Bool
-#include "vm_basic_types.h"
 #include "dnd.h"
 
 #define UNGRABBED_POS (-100)

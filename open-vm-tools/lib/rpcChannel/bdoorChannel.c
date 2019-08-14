@@ -23,8 +23,8 @@
  *    RpcIn / RpcOut libraries.
  */
 
-#include "vm_assert.h"
 #include "rpcChannelInt.h"
+#include "vm_assert.h"
 #if defined(NEED_RPCIN)
 #include "rpcin.h"
 #endif

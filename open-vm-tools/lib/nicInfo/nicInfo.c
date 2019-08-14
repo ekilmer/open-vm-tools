@@ -29,12 +29,12 @@
 #   include <ws2tcpip.h>
 #endif
 
+#include "xdrutil.h"
 #include "vm_assert.h"
 #include "debug.h"
 #include "nicInfoInt.h"
 #include "str.h"
 #include "util.h"
-#include "xdrutil.h"
 #include "netutil.h"
 #include "wiper.h"
 

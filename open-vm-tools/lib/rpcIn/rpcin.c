@@ -55,6 +55,11 @@
 
 #include <ctype.h>
 
+#if defined(VMTOOLS_USE_GLIB)
+#  include "vmware/tools/guestrpc.h"
+#  include "vmware/tools/utils.h"
+#endif
+
 #if defined(VMTOOLS_USE_VSOCKET)
 #  include <glib.h>
 #  include "poll.h"
@@ -67,11 +72,6 @@
 #else
 #include <winsock2.h>
 #endif
-#endif
-
-#if defined(VMTOOLS_USE_GLIB)
-#  include "vmware/tools/guestrpc.h"
-#  include "vmware/tools/utils.h"
 #endif
 
 #include "vmware.h"

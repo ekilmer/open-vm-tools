@@ -27,8 +27,6 @@
 
 #define G_LOG_DOMAIN "rpcdbg"
 
-#include <gmodule.h>
-
 #include "strutil.h"
 #include "util.h"
 #include "vmrpcdbgInt.h"
@@ -36,6 +34,8 @@
 #include "vmxrpc.h"
 #include "xdrutil.h"
 #include "vmware/tools/utils.h"
+
+#include <gmodule.h>
 
 typedef struct DbgChannelData {
    ToolsAppCtx      *ctx;

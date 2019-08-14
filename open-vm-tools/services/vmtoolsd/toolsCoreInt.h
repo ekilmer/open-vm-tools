@@ -29,6 +29,7 @@
 #define G_LOG_DOMAIN       VMW_TEXT_DOMAIN
 #define TOOLSCORE_COMMON   "common"
 
+#include <sys/param.h>
 #include <glib-object.h>
 #include <gmodule.h>
 #include <time.h>

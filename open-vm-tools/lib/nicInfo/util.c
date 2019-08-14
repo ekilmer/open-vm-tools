@@ -24,9 +24,9 @@
 
 #include <string.h>
 
-#include "vmware.h"
-#include "nicInfoInt.h"
 #include "xdrutil.h"
+#include "nicInfoInt.h"
+#include "vmware.h"
 
 
 /*

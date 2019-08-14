@@ -43,13 +43,14 @@
 #  define VMTOOLS_EXTERN_C
 #endif
 
-#include <glib.h>
 #if defined(G_PLATFORM_WIN32)
 #  include <windows.h>
 #else
 #  include <signal.h>
 #  include <sys/time.h>
+#  include <sys/param.h>
 #endif
+#include <glib.h>
 
 
 /* Work around a glib limitation: it doesn't set G_INLINE_FUNC on Win32. */

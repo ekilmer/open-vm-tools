@@ -26,9 +26,9 @@
  */
 
 #define G_LOG_DOMAIN "deployPkg"
-#include <glib.h>
 #include "vmware/guestrpc/deploypkg.h"
 #include "vmware/tools/guestrpc.h"
+#include <glib.h>
 
 G_BEGIN_DECLS
 

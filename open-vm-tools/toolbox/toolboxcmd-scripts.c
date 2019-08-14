@@ -22,7 +22,6 @@
  *     The scripts functions for the linux toolbox-cmd
  */
 
-#include <glib.h>
 #include <string.h>
 #include <stdlib.h>
 #include <sys/types.h>
@@ -35,6 +34,8 @@
 #include "toolboxCmdInt.h"
 #include "vmware/tools/i18n.h"
 #include "vmware/tools/utils.h"
+
+#include <glib.h>
 
 
 #define SCRIPT_SUSPEND "suspend"

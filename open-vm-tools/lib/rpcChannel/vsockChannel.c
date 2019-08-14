@@ -26,8 +26,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "simpleSocket.h"
 #include "rpcChannelInt.h"
+#include "simpleSocket.h"
 #include "util.h"
 #include "debug.h"
 

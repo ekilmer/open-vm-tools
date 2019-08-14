@@ -27,7 +27,6 @@
 #define G_LOG_MAIN "toolboxcmd"
 #define VMW_TEXT_DOMAIN G_LOG_MAIN
 
-#include <glib.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -40,6 +39,7 @@
 #endif
 
 #include "vmGuestLib.h"
+#include <glib.h>
 
 /*
  * Some platforms (such as Win32) don't have sysexits.h and thus don't have

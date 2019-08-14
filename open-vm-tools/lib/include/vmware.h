@@ -73,6 +73,7 @@
 #define INCLUDE_ALLOW_DISTRIBUTE
 #include "includeCheck.h"
 
+#include <sys/param.h>
 #include "vm_basic_types.h"
 #include "vm_basic_defs.h"
 #include "vm_assert.h"

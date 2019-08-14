@@ -27,13 +27,13 @@
 
 #define G_LOG_DOMAIN "vmbackup"
 
-#include <glib.h>
 #include "vmware.h"
 #include "vmware/guestrpc/vmbackup.h"
 #include "vmware/tools/plugin.h"
 #if !defined(_WIN32)
 #include "vmware/tools/threadPool.h"
 #endif
+#include <glib.h>
 
 /*
  * The default timeout in seconds for guest OS quiescing process

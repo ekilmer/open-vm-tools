@@ -24,6 +24,7 @@
 
 #include <fcntl.h>
 #include <sys/ioctl.h>
+#include <sys/param.h>
 #include <glib.h>
 #include "debug.h"
 #include "syncDriverInt.h"

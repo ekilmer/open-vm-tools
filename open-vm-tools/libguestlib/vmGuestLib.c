@@ -23,6 +23,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <sys/param.h>
 #include "vmware.h"
 #include "vmGuestLib.h"
 #include "vmGuestLibInt.h"

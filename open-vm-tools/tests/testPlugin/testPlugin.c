@@ -26,8 +26,6 @@
 
 #define G_LOG_DOMAIN "test"
 
-#include <glib-object.h>
-#include <gmodule.h>
 #include <CUnit/CUnit.h>
 
 #include "testData.h"
@@ -36,6 +34,9 @@
 #include "vmware/tools/plugin.h"
 #include "vmware/tools/rpcdebug.h"
 #include "vmware/tools/utils.h"
+
+#include <gmodule.h>
+#include <glib-object.h>
 
 #define TEST_APP_PROVIDER        "TestProvider"
 #define TEST_APP_NAME            "TestProviderApp1"

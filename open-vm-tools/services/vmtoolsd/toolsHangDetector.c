@@ -23,9 +23,9 @@
  */
 
 #include <string.h>
-#include <glib.h>
 
 #include "vmware.h"
+#include <glib.h>
 #include "vmware/tools/log.h"
 #include "vmware/tools/threadPool.h"
 #include "toolsHangDetector.h"

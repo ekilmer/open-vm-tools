@@ -25,6 +25,7 @@
  *    header of simple socket wrappers.
  */
 
+#include <sys/param.h>
 #include <glib.h>
 
 #if defined(_WIN32)
