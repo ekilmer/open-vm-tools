@@ -35,6 +35,7 @@ jobs:
 
 - job: "GUIX"
   displayName: "GUIX Docker Build"
+  continueOnError: True
   pool:
     vmImage: "ubuntu-latest"
 
