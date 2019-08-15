@@ -34,7 +34,7 @@ jobs:
     displayName: 'Build'
 
 - job: "GUIX"
-  displayName: "GUIX Build"
+  displayName: "GUIX Docker Build"
   pool:
     vmImage: "ubuntu-latest"
 
