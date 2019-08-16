@@ -7,6 +7,7 @@
   #:use-module (gnu packages linux)
   #:use-module (gnu packages compression)
   #:use-module (gnu packages glib)
+  #:use-module (gnu packages commencement)
   #:use-module (gnu packages gtk)
   #:use-module (gnu packages tls)
   #:use-module (gnu packages xml)
@@ -41,12 +42,17 @@
         (modify-phases %standard-phases
                        (add-after `unpack `real-source
                                   (lambda _ (chdir "./open-vm-tools")))
+                       (add-before 'configure 'fixgcc8
+                                   (lambda _
+                                     (unsetenv "C_INCLUDE_PATH")
+                                     (unsetenv "CPLUS_INCLUDE_PATH")))
                        (add-before 'configure 'autoreconf
                                    (lambda _ (invoke "autoreconf" "-vfi") #t)))))
     (native-inputs
      `(("autoconf" ,autoconf-wrapper)
        ("automake" ,automake)
        ("libtool" ,libtool)
+       ("gcc-toolchain", gcc-toolchain-8)
        ("pkg-config" ,pkg-config)
        ("cunit" ,cunit)))
     (inputs
