@@ -41,13 +41,23 @@
         #:phases
         (modify-phases %standard-phases
                        (add-after `unpack `real-source
-                                  (lambda _ (chdir "./open-vm-tools")))
+                                  (lambda _ (chdir "open-vm-tools") #t))
+                       (add-after `real-source `patch-build
+                                  (lambda _
+                                    (substitute* "configure.ac"
+                                                 (("CFLAGS=\"\\$CFLAGS -Werror\"") ""))
+                                    (substitute* "libvmtools/Makefile.am"
+                                                 (("libvmtools_la_LIBADD \\+= \\@ICU_LIBS\\@" line)
+                                                  (string-append line
+                                                                 "\nlibvmtools_la_LIBADD += @TIRPC_LIBS@")))
+                                    #t))
                        (add-before 'configure 'fixgcc8
                                    (lambda _
                                      (unsetenv "C_INCLUDE_PATH")
-                                     (unsetenv "CPLUS_INCLUDE_PATH")))
+                                     (unsetenv "CPLUS_INCLUDE_PATH") #t))
                        (add-before 'configure 'autoreconf
-                                   (lambda _ (invoke "autoreconf" "-vfi") #t)))))
+                                   (lambda _ (invoke "autoreconf" "-vfi") #t))
+                       )))
     (native-inputs
      `(("autoconf" ,autoconf-wrapper)
        ("automake" ,automake)
