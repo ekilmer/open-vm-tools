@@ -25,7 +25,6 @@
  * Internal definitions for the sync driver library.
  */
 
-#include <sys/param.h>
 #include <glib.h>
 #include "syncDriver.h"
 

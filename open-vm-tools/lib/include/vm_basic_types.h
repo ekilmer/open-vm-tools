@@ -289,7 +289,7 @@ typedef char           Bool;
 #include <stdlib.h>
 #endif
 
-#if defined(__FreeBSD__) || defined(HAVE_SYS_PARAM_H)
+#ifdef __FreeBSD__
 #include <sys/param.h> /* For __FreeBSD_version */
 #endif
 

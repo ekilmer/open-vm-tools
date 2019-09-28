@@ -22,8 +22,8 @@
  * A logger that writes the logs to the VMX log file.
  */
 
-#include "vmware/tools/guestrpc.h"
 #include "vmtoolsInt.h"
+#include "vmware/tools/guestrpc.h"
 
 typedef struct VMXLoggerData {
    GlibLogger     handler;

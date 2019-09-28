@@ -25,7 +25,6 @@
 
 #include <stdio.h>
 #include <time.h>
-#include <sys/param.h>
 #include "unicode.h"
 
 #if defined(_WIN32)

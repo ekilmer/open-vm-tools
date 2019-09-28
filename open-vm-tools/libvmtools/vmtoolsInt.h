@@ -25,9 +25,9 @@
  * Internal definitions used by the vmtools library.
  */
 
+#include "glibUtils.h"
 #include "vmware.h"
 #include "vmware/tools/utils.h"
-#include "glibUtils.h"
 
 /* ************************************************************************** *
  * Internationalization.                                                      *

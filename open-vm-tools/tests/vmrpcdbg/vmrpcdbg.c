@@ -24,6 +24,7 @@
 
 #define G_LOG_DOMAIN "rpcdbg"
 
+#include <gmodule.h>
 #include "CUnit/Basic.h"
 #include <CUnit/CUnit.h>
 
@@ -33,8 +34,6 @@
 #include "vm_version.h"
 #include "embed_version.h"
 #include "vmtoolsd_version.h"
-
-#include <gmodule.h>
 VM_EMBED_VERSION(VMTOOLSD_VERSION_STRING);
 
 static GModule *gPlugin = NULL;

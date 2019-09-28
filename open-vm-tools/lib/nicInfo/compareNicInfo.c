@@ -28,8 +28,8 @@
 
 #include <string.h>
 
-#include "xdrutil.h"
 #include "vmware.h"
+#include "xdrutil.h"
 
 #include "nicInfoInt.h"
 

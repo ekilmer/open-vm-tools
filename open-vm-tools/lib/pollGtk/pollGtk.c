@@ -46,7 +46,6 @@
  */
 
 
-#include <sys/param.h>
 #ifdef _WIN32
 #include <winsock2.h>
 #pragma pack(push, 8)

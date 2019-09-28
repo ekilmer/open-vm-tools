@@ -24,7 +24,6 @@
 
 #include <sys/types.h>
 #include <sys/wait.h>
-#include <sys/param.h>
 
 #include <ctype.h>
 #include <stdio.h>

@@ -36,9 +36,6 @@
  * @{
  */
 
-#if !defined(USE_RPCI_ONLY)
-#include "xdrutil.h"
-#endif
 #include <glib.h>
 #include "vmware/tools/utils.h"
 

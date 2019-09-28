@@ -31,7 +31,6 @@
  *    matter what handler has been configured.
  */
 
-#include "vmware/tools/guestrpc.h"
 #include "vmtoolsInt.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -55,6 +54,7 @@
 #include "str.h"
 #include "system.h"
 #include "vmware/tools/log.h"
+#include "vmware/tools/guestrpc.h"
 #include "vmware/guestrpc/tclodefs.h"
 #include "err.h"
 #include "logToHost.h"

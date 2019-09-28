@@ -41,33 +41,33 @@ extern "C" {
 
 /* And, the REG_foo definitions conflict with our own in x86.h */
 #  if defined(__x86_64__)
-#    define GNU_REG_RAX REG_RAX
-#    define GNU_REG_RBX REG_RBX
-#    define GNU_REG_RCX REG_RCX
-#    define GNU_REG_RDX REG_RDX
-#    define GNU_REG_RSI REG_RSI
-#    define GNU_REG_RDI REG_RDI
-#    define GNU_REG_RSP REG_RSP
-#    define GNU_REG_RBP REG_RBP
-#    define GNU_REG_RIP REG_RIP
-#    define GNU_REG_R8  REG_R8
-#    define GNU_REG_R9  REG_R9
-#    define GNU_REG_R10 REG_R10
-#    define GNU_REG_R11 REG_R11
-#    define GNU_REG_R12 REG_R12
-#    define GNU_REG_R13 REG_R13
-#    define GNU_REG_R14 REG_R14
-#    define GNU_REG_R15 REG_R15
+#    define REG_RAX GNU_REG_RAX
+#    define REG_RBX GNU_REG_RBX
+#    define REG_RCX GNU_REG_RCX
+#    define REG_RDX GNU_REG_RDX
+#    define REG_RSI GNU_REG_RSI
+#    define REG_RDI GNU_REG_RDI
+#    define REG_RSP GNU_REG_RSP
+#    define REG_RBP GNU_REG_RBP
+#    define REG_RIP GNU_REG_RIP
+#    define REG_R8  GNU_REG_R8
+#    define REG_R9  GNU_REG_R9
+#    define REG_R10 GNU_REG_R10
+#    define REG_R11 GNU_REG_R11
+#    define REG_R12 GNU_REG_R12
+#    define REG_R13 GNU_REG_R13
+#    define REG_R14 GNU_REG_R14
+#    define REG_R15 GNU_REG_R15
 #  elif defined(__i386__)
-#    define GNU_REG_EAX REG_EAX
-#    define GNU_REG_EBX REG_EBX
-#    define GNU_REG_ECX REG_ECX
-#    define GNU_REG_EDX REG_EDX
-#    define GNU_REG_ESI REG_ESI
-#    define GNU_REG_EDI REG_EDI
-#    define GNU_REG_ESP REG_ESP
-#    define GNU_REG_EBP REG_EBP
-#    define GNU_REG_EIP REG_EIP
+#    define REG_EAX GNU_REG_EAX
+#    define REG_EBX GNU_REG_EBX
+#    define REG_ECX GNU_REG_ECX
+#    define REG_EDX GNU_REG_EDX
+#    define REG_ESI GNU_REG_ESI
+#    define REG_EDI GNU_REG_EDI
+#    define REG_ESP GNU_REG_ESP
+#    define REG_EBP GNU_REG_EBP
+#    define REG_EIP GNU_REG_EIP
 #  endif
 #endif
 

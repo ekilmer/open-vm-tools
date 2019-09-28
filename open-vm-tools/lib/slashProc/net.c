@@ -28,7 +28,6 @@
 #include <string.h>
 #include <unistd.h>
 #include <net/if.h>
-#include <sys/param.h>
 
 #include <glib.h>
 #include <glib/gstdio.h>

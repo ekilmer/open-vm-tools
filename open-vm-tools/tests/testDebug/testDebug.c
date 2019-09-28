@@ -25,6 +25,7 @@
  */
 
 #define G_LOG_DOMAIN "testDebug"
+#include <glib-object.h>
 #include <CUnit/CUnit.h>
 
 #include "util.h"
@@ -32,8 +33,6 @@
 #include "xdrutil.h"
 #include "vmware/guestrpc/tclodefs.h"
 #include "vmware/tools/rpcdebug.h"
-
-#include <glib-object.h>
 
 static gboolean
 TestDebugValidateReset(RpcInData *data, gboolean ret);

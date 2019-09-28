@@ -30,6 +30,7 @@
 #if defined(NEED_RPCIN)
 #include "dynxdr.h"
 #include "vmxrpc.h"
+#include "xdrutil.h"
 #include "rpcin.h"
 #endif
 

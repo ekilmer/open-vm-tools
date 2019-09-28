@@ -25,7 +25,6 @@
 #include <errno.h>
 #include <locale.h>
 #include <stdio.h>
-#include <sys/param.h>
 #include <glib/gprintf.h>
 
 #include "vmware.h"

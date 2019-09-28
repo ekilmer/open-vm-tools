@@ -26,7 +26,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <sys/param.h>
 #include <glib.h>
 #if defined(_WIN32)
 #  include <windows.h>

@@ -23,7 +23,6 @@
  */
 
 #include <stdio.h>
-#include <sys/param.h>
 #include <glib.h>
 #include "vmware.h"
 #include "str.h"

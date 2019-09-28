@@ -48,8 +48,6 @@
 #define USE_RESOLVE 1
 #endif
 
-#include "xdrutil.h"
-
 #if defined(USERWORLD) || (defined(__linux__) && defined(NO_DNET))
 #include "vm_basic_defs.h"
 #include <net/if.h>
@@ -112,6 +110,7 @@
 #include "guest_os.h"
 #include "guestApp.h"
 #include "guestInfo.h"
+#include "xdrutil.h"
 #ifdef USE_SLASH_PROC
 #   include "slashProc.h"
 #endif
