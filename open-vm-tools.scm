@@ -9,6 +9,7 @@
   #:use-module (gnu packages glib)
   #:use-module (gnu packages commencement)
   #:use-module (gnu packages gtk)
+  #:use-module (gnu packages file)
   #:use-module (gnu packages tls)
   #:use-module (gnu packages xml)
   #:use-module (gnu packages xorg)
@@ -22,7 +23,7 @@
 (define-public open-vm-tools
   (package
     (name "open-vm-tools")
-    (version "10.3.10")
+    (version "11.0.0")
     (source (origin
               (method git-fetch)
               (uri (git-reference
@@ -31,7 +32,7 @@
               (file-name (git-file-name name version))
               (sha256
                 (base32
-                  "0x2cyccnb4sycrw7r5mzby2d196f9jiph8vyqi0x8v8r2b4vi4yj"))))
+                  "1q0gb5zibx9lhyvx35vhm2sjldrsr0c8hkcfaxqiv948cnv41i6x"))))
     (build-system gnu-build-system)
     (arguments
       ;; TODO: Add ability to optionally configure with/without X "--without-x"
@@ -40,30 +41,31 @@
                             "--without-dnet")
         #:phases
         (modify-phases %standard-phases
-                       (add-after `unpack `real-source
+                       (add-after `unpack `chdir
                                   (lambda _ (chdir "open-vm-tools") #t))
-                       (add-after `real-source `patch-build
-                                  (lambda _
-                                    (substitute* "configure.ac"
-                                                 (("CFLAGS=\"\\$CFLAGS -Werror\"") ""))
-                                    (substitute* "libvmtools/Makefile.am"
-                                                 (("libvmtools_la_LIBADD \\+= \\@ICU_LIBS\\@" line)
-                                                  (string-append line
-                                                                 "\nlibvmtools_la_LIBADD += @TIRPC_LIBS@")))
-                                    #t))
-                       (add-before 'configure 'fixgcc8
-                                   (lambda _
-                                     (unsetenv "C_INCLUDE_PATH")
-                                     (unsetenv "CPLUS_INCLUDE_PATH") #t))
                        (add-before 'configure 'autoreconf
                                    (lambda _ (invoke "autoreconf" "-vfi") #t))
-                       )))
+                       (add-before 'configure 'fix-ldconfig
+                                   (lambda _ 
+                                     (substitute* "configure" 
+                                       (("ldconfig") "true"))
+                                     (substitute* "m4/libtool.m4" 
+                                       (("ldconfig") "true"))
+                                     #t))
+                       (replace 'install
+                         (lambda* (#:key outputs #:allow-other-keys)
+                           (let ((out (assoc-ref outputs "out")))
+                             (invoke "make" "install"
+                                     (string-append "DESTDIR=" out))
+                             )))
+       )))
     (native-inputs
      `(("autoconf" ,autoconf-wrapper)
        ("automake" ,automake)
        ("libtool" ,libtool)
-       ("gcc-toolchain", gcc-toolchain-8)
+       ("gcc-toolchain" ,gcc-toolchain)
        ("pkg-config" ,pkg-config)
+       ("file" ,file)
        ("cunit" ,cunit)))
     (inputs
      `(("kernel-headers" ,linux-libre-headers)

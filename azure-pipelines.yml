@@ -66,5 +66,5 @@ jobs:
       sudo ./install-guix.sh
     displayName: 'GUIX Native Install'
 
-  - script: guix environment --pure --container --manifest=open-vm-tools-manifest.scm -- ./build.sh
+  - script: guix environment --pure --container --load=open-vm-tools.scm -- ./build.sh
     displayName: 'Build'
