@@ -36,12 +36,15 @@
     (build-system gnu-build-system)
     (arguments
       ;; TODO: Add ability to optionally configure with/without X "--without-x"
-      `(#:phases
+      `(#:make-flags (let ((out (assoc-ref %outputs "out")))
+                       (list
+                         (string-append "LDFLAGS=-Wl,-rpath=" out "/lib")
+                         )
+                       )
+        #:phases
         (modify-phases %standard-phases
                        (add-after `unpack `chdir
                                   (lambda _ (chdir "open-vm-tools") #t))
-                       (add-before 'configure 'autoreconf
-                                   (lambda _ (invoke "autoreconf" "-vfi") #t))
                        (add-before 'configure 'fix-ldconfig
                                    (lambda _
                                      (substitute* "configure"
@@ -54,18 +57,21 @@
                            (let ((out (assoc-ref outputs "out")))
                              (invoke "./configure"
                                      "--without-kernel-modules"
-                                     "--prefix="
-                                     "--exec-prefix="
-                                     ;; TODO: Package not in GUIX yet
+                                     (string-append "--prefix=" out)
+                                     ;; Package not in GUIX
                                      "--without-dnet"
-                                     (string-append "LDFLAGS=-Wl,rpath=" out "/lib")
+                                     ;; TODO fix eudev install path
                                      "SHELL=sh")
                              )))
                        (replace 'install
                          (lambda* (#:key outputs #:allow-other-keys)
                            (let ((out (assoc-ref outputs "out")))
                              (invoke "make" "install"
-                                     (string-append "DESTDIR=" out))
+                                     ;; Needed because we don't want /usr/local
+                                     ;; prefix before lib, bin, etc.
+                                     "prefix="
+                                     (string-append "DESTDIR=" out)
+                                     )
                              )))
        )))
     (native-inputs
