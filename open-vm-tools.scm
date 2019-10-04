@@ -46,10 +46,10 @@
                        (add-before 'configure 'autoreconf
                                    (lambda _ (invoke "autoreconf" "-vfi") #t))
                        (add-before 'configure 'fix-ldconfig
-                                   (lambda _ 
-                                     (substitute* "configure" 
+                                   (lambda _
+                                     (substitute* "configure"
                                        (("ldconfig") "true"))
-                                     (substitute* "m4/libtool.m4" 
+                                     (substitute* "m4/libtool.m4"
                                        (("ldconfig") "true"))
                                      #t))
                        (replace 'install
