@@ -28,6 +28,10 @@ RUN cd /tmp \
   && mv var/guix /var/ \
   && mv gnu /
 
+# Set up minimal nsswitch.conf for some of Guix's package installation/build requirements
+# https://github.com/gliderlabs/docker-alpine/issues/367
+RUN [ ! -e /etc/nsswitch.conf ] && echo 'hosts: files dns' > /etc/nsswitch.conf
+
 RUN mkdir -p /root/.config/guix && \
     ln -sf /var/guix/profiles/per-user/root/current-guix /root/.config/guix/current
 ENV PATH /root/.config/guix/current/bin:$PATH
