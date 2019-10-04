@@ -1,38 +1,5 @@
 jobs:
 
-- job: "LinuxDistro"
-  displayName: "Linux Distro Build"
-  pool:
-    vmImage: 'ubuntu-latest'
-
-  strategy:
-    matrix:
-      ubuntu14:
-        containerImage: ubuntu:14.04
-        dockerfile: Dockerfile.ubuntu
-      ubuntu16:
-        containerImage: ubuntu:16.04
-        dockerfile: Dockerfile.ubuntu
-      ubuntu18:
-        containerImage: ubuntu:18.04
-        dockerfile: Dockerfile.ubuntu
-      ubuntu-rolling:
-        containerImage: ubuntu:rolling
-        dockerfile: Dockerfile.ubuntu
-      ubuntu-devel:
-        containerImage: ubuntu:devel
-        dockerfile: Dockerfile.ubuntu
-      fedora-latest:
-        containerImage: fedora:latest
-        dockerfile: Dockerfile.fedora
-
-  steps:
-  - script: docker build -f $(dockerfile) --build-arg IMAGE=$(containerImage) -t base .
-    displayName: 'Install build dependencies'
-
-  - script: docker run -v $(pwd):/open-vm-tools -w /open-vm-tools base ./build.sh
-    displayName: 'Build'
-
 - job: "GUIX"
   displayName: "GUIX Docker Build"
   continueOnError: True

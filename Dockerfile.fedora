@@ -1,5 +1,0 @@
-ARG IMAGE=fedora:30
-FROM $IMAGE as dep-base
-RUN dnf install -y sudo dnf-plugins-core && \
-    dnf builddep -y open-vm-tools && \
-    dnf install -y make CUnit
