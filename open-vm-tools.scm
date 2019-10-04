@@ -36,10 +36,7 @@
     (build-system gnu-build-system)
     (arguments
       ;; TODO: Add ability to optionally configure with/without X "--without-x"
-      `(#:configure-flags '("--without-kernel-modules"
-                            ;; TODO: Package not in GUIX yet
-                            "--without-dnet")
-        #:phases
+      `(#:phases
         (modify-phases %standard-phases
                        (add-after `unpack `chdir
                                   (lambda _ (chdir "open-vm-tools") #t))
@@ -52,6 +49,18 @@
                                      (substitute* "m4/libtool.m4"
                                        (("ldconfig") "true"))
                                      #t))
+                       (replace 'configure
+                         (lambda* (#:key outputs #:allow-other-keys)
+                           (let ((out (assoc-ref outputs "out")))
+                             (invoke "./configure"
+                                     "--without-kernel-modules"
+                                     "--prefix="
+                                     "--exec-prefix="
+                                     ;; TODO: Package not in GUIX yet
+                                     "--without-dnet"
+                                     (string-append "LDFLAGS=-Wl,rpath=" out "/lib")
+                                     "SHELL=sh")
+                             )))
                        (replace 'install
                          (lambda* (#:key outputs #:allow-other-keys)
                            (let ((out (assoc-ref outputs "out")))
