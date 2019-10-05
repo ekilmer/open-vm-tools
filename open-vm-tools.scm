@@ -58,6 +58,8 @@
                              (invoke "./configure"
                                      "--without-kernel-modules"
                                      (string-append "--prefix=" out)
+                                     (string-append "--with-udev-rules-dir="
+                                                    out "/lib/udev/rules.d")
                                      ;; Package not in GUIX
                                      "--without-dnet"
                                      ;; TODO fix eudev install path
@@ -70,6 +72,7 @@
                                      ;; Needed because we don't want /usr/local
                                      ;; prefix before lib, bin, etc.
                                      "prefix="
+                                     "UDEVRULESDIR=/lib/udev/rules.d"
                                      (string-append "DESTDIR=" out)
                                      )
                              )))
