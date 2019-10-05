@@ -38,9 +38,7 @@
       ;; TODO: Add ability to optionally configure with/without X "--without-x"
       `(#:make-flags (let ((out (assoc-ref %outputs "out")))
                        (list
-                         (string-append "LDFLAGS=-Wl,-rpath=" out "/lib")
-                         )
-                       )
+                         (string-append "LDFLAGS=-Wl,-rpath=" out "/lib")))
         #:phases
         (modify-phases %standard-phases
                        (add-after `unpack `chdir
@@ -62,8 +60,7 @@
                                                     out "/lib/udev/rules.d")
                                      ;; Package not in GUIX
                                      "--without-dnet"
-                                     "SHELL=sh")
-                             )))
+                                     "SHELL=sh"))))
                        (replace 'install
                          (lambda* (#:key outputs #:allow-other-keys)
                            (let ((out (assoc-ref outputs "out")))
@@ -72,51 +69,46 @@
                                      ;; prefix before lib, bin, etc.
                                      "prefix="
                                      "UDEVRULESDIR=/lib/udev/rules.d"
-                                     (string-append "DESTDIR=" out)
-                                     )
-                             )))
-       )))
+                                     (string-append "DESTDIR=" out))))))))
     (native-inputs
      `(("autoconf" ,autoconf-wrapper)
        ("automake" ,automake)
-       ("libtool" ,libtool)
-       ("gcc-toolchain" ,gcc-toolchain)
-       ("pkg-config" ,pkg-config)
+       ("cunit" ,cunit)
        ("file" ,file)
-       ("cunit" ,cunit)))
-    (inputs
-     `(("kernel-headers" ,linux-libre-headers)
-       ("pam" ,linux-pam)
-       ("libmspack" ,libmspack)
-       ("glib" ,glib)
+       ("gcc-toolchain" ,gcc-toolchain)
        ("glib:bin" ,glib "bin")
+       ("libtool" ,libtool)
+       ("pkg-config" ,pkg-config)))
+    (inputs
+     `(("fuse" ,fuse)
        ("gdk-pixbuf" ,gdk-pixbuf)
+       ("glib" ,glib)
        ("gtk+" ,gtk+)
        ("gtkmm" ,gtkmm)
-       ("fuse" ,fuse)
-       ("openssl" ,openssl)
-       ("libxml2" ,libxml2)
-       ("xmlsec" ,xmlsec)
+       ("kernel-headers" ,linux-libre-headers)
+       ("libdrm" ,libdrm)
+       ("libltdl" ,libltdl)
+       ("libmspack" ,libmspack)
+       ("libtirpc" ,libtirpc)
        ("libx11" ,libx11)
        ("libxext" ,libxext)
        ("libxinerama" ,libxinerama)
        ("libxi" ,libxi)
        ("libxrender" ,libxrender)
        ("libxrandr" ,libxrandr)
+       ("libxml2" ,libxml2)
        ("libxtst" ,libxtst)
-       ("libltdl" ,libltdl)
-       ("libdrm" ,libdrm)
-       ("libtirpc" ,libtirpc)
-       ("udev" ,eudev)))
+       ("openssl" ,openssl)
+       ("pam" ,linux-pam)
+       ("udev" ,eudev)
+       ("xmlsec" ,xmlsec)))
     (supported-systems '("x86_64-linux" "i686-linux"))
     (home-page "https://github.com/vmware/open-vm-tools")
     (synopsis
-      "A set of services and modules that enable several features in
-      VMware products for    better management of, and seamless user
-      interactions with, guests.")
+      "Services and modules that enable several features in VMware products")
     (description
       "A set of services and modules that enable several features in
-      VMware products for    better management of, and seamless user
+      VMware products for better management of, and seamless user
       interactions with, guests.")
     (license license:gpl2+)))
 
