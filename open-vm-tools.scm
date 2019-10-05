@@ -62,7 +62,6 @@
                                                     out "/lib/udev/rules.d")
                                      ;; Package not in GUIX
                                      "--without-dnet"
-                                     ;; TODO fix eudev install path
                                      "SHELL=sh")
                              )))
                        (replace 'install
